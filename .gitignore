@@ -1,0 +1,9 @@
+*~
+._*
+.Rhistory
+.Rproj.user
+*.Rproj
+*.RData
+_bookdown_files
+.Rprofile
+libs/

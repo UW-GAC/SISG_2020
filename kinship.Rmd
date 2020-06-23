@@ -1,0 +1,262 @@
+# Computing a GRM
+
+We can use the [SNPRelate package](https://github.com/zhengxwen/SNPRelate) to compute a Genetic Relationship matrix (GRM). This method combines relatedness due to more distant ancestry and recent kinship into a single matrix.
+
+SNPRelate offers several algorithms for computing a GRM, including the commonly-used GCTA [Yang et al 2011](https://www.ncbi.nlm.nih.gov/pubmed/21167468). The most recent algorithm added to the package is "IndivBeta" [Weir and Goudet 2017](https://www.ncbi.nlm.nih.gov/pubmed/28550018).
+
+```{r grm}
+library(SeqArray)
+repo_path <- "https://github.com/UW-GAC/SISG_2020/raw/master"
+if (!dir.exists("data")) dir.create("data")
+gdsfile <- "data/1KG_phase3_subset_chr1.gds"
+if (!file.exists(gdsfile)) download.file(file.path(repo_path, gdsfile), gdsfile)
+gdsfmt::showfile.gds(closeall=TRUE) # make sure file is not already open
+gds <- seqOpen(gdsfile)
+
+library(SNPRelate)
+grm <- snpgdsGRM(gds, method="GCTA")
+names(grm)
+dim(grm$grm)
+
+seqClose(gds)
+```
+
+
+# PC-Relate
+
+To disentangle ancestry from recent familial relatedness, we use the [PC-Relate](http://www.ncbi.nlm.nih.gov/pubmed/26748516) method.
+
+## KING
+
+Step 1 is to get initial estimates of kinship using [KING](http://www.ncbi.nlm.nih.gov/pubmed/20926424), which is robust to population structure but not admixture. The KING algorithm is available in SNPRelate. We select a subset of variants for this calculation with LD pruning.
+
+```{r king}
+# use a GDS file with all chromosomes
+library(SeqArray)
+gdsfile <- "data/1KG_phase3_subset.gds"
+if (!file.exists(gdsfile)) download.file(file.path(repo_path, gdsfile), gdsfile)
+gdsfmt::showfile.gds(closeall=TRUE) # make sure file is not already open
+gds <- seqOpen(gdsfile)
+
+# use a subset of 100 samples to make things run faster
+sampfile <- "data/samples_subset100.RData"
+if (!file.exists(sampfile)) download.file(file.path(repo_path, sampfile), sampfile)
+sample.id <- TopmedPipeline::getobj(sampfile)
+
+# LD pruning to get variant set
+library(SNPRelate)
+set.seed(100) # LD pruning has a random element; so make this reproducible
+snpset <- snpgdsLDpruning(gds, sample.id=sample.id, method="corr", 
+                          slide.max.bp=10e6, ld.threshold=sqrt(0.1))
+sapply(snpset, length)
+pruned <- unlist(snpset, use.names=FALSE)
+
+# KING
+king <- snpgdsIBDKING(gds, sample.id=sample.id, snp.id=pruned)
+names(king)
+dim(king$kinship)
+kingMat <- king$kinship
+colnames(kingMat) <- rownames(kingMat) <- king$sample.id
+```
+
+We extract pairwise kinship estimates and IBS0 to plot.
+
+```{r king_plot}
+kinship <- snpgdsIBDSelection(king)
+head(kinship)
+
+library(ggplot2)
+ggplot(kinship, aes(IBS0, kinship)) +
+    geom_hline(yintercept=2^(-seq(3,9,2)/2), linetype="dashed", color="grey") +
+    geom_point(alpha=0.5) +
+    ylab("kinship estimate") +
+    theme_bw()
+```
+
+## PC-AiR
+
+The next step is [PC-AiR](http://www.ncbi.nlm.nih.gov/pubmed/25810074), in which we select a set of unrelated samples that is maximally informative about all ancestries in the sample. We use this unrelated set for Principal Component Analysis (PCA), then project the relatives onto the PCs.
+
+First, we partition the samples into a related and unrelated set. We use a kinship threshold of degree 3, which corresponds to first cousins. This defines anyone less related than first cousins as "unrelated". We load the GENESIS package. In the first iteration, we use the KING estimates for both kinship (`kinMat`) and ancestry divergence (`divMat`). KING kinship estimates are negative for samples with different ancestry.
+
+```{r pcair_partition}
+library(GENESIS)
+sampset <- pcairPartition(kinobj=kingMat, kin.thresh=2^(-9/2),
+                          divobj=kingMat, div.thresh=-2^(-9/2))
+names(sampset)
+sapply(sampset, length)
+```
+
+Using the SNPRelate package, we run PCA on the unrelated set and project values for the related set. We use the same LD pruned set of variants again.
+
+```{r pcair_1}
+# run PCA on unrelated set
+pca.unrel <- snpgdsPCA(gds, sample.id=sampset$unrels, snp.id=pruned)
+
+# project values for relatives
+snp.load <- snpgdsPCASNPLoading(pca.unrel, gdsobj=gds)
+samp.load <- snpgdsPCASampLoading(snp.load, gdsobj=gds, sample.id=sampset$rels)
+
+# combine unrelated and related PCs and order as in GDS file
+pcs <- rbind(pca.unrel$eigenvect, samp.load$eigenvect)
+rownames(pcs) <- c(pca.unrel$sample.id, samp.load$sample.id)
+samp.ord <- match(sample.id, rownames(pcs))
+pcs <- pcs[samp.ord,]
+```
+
+We need to determine which PCs are ancestry informative. To do this we need population information for the 1000 Genomes samples. This information is stored in an `AnnotatedDataFrame`, which is a data.frame with optional metadata describing the columns. The class is defined in the Biobase package. We load the stored object using the `getobj` function from the TopmedPipeline package.
+
+```{r annot}
+library(Biobase)
+sampfile <- "data/sample_annotation.RData"
+if (!file.exists(sampfile)) download.file(file.path(repo_path, sampfile), sampfile)
+annot <- TopmedPipeline::getobj(sampfile)
+annot
+head(pData(annot))
+varMetadata(annot)
+```
+
+We make a parallel coordinates plot, color-coding by 1000 Genomes population. We load the [dplyr](http://dplyr.tidyverse.org) package for data.frame manipulation.
+
+```{r pcair_parcoord}
+pc.df <- as.data.frame(pcs)
+names(pc.df) <- 1:ncol(pcs)
+pc.df$sample.id <- row.names(pcs)
+
+library(dplyr)
+annot <- pData(annot) %>%
+        dplyr::select(sample.id, Population)
+pc.df <- left_join(pc.df, annot, by="sample.id")
+
+library(GGally)
+library(RColorBrewer)
+pop.cols <- setNames(brewer.pal(12, "Paired"),
+                 c("ACB", "ASW", "CEU", "GBR", "CHB", "JPT", "CLM", "MXL", "LWK", "YRI", "GIH", "PUR"))
+ggparcoord(pc.df, columns=1:12, groupColumn="Population", scale="uniminmax") +
+    scale_color_manual(values=pop.cols) +
+    xlab("PC") + ylab("")
+```
+
+
+## PC-Relate
+
+The first 2 PCs separate populations, so we use them to compute kinship estimates adjusting for ancestry. The PC-Relate function expects a `SeqVarIterator` object.
+
+```{r pcrelate_1}
+seqResetFilter(gds, verbose=FALSE)
+library(SeqVarTools)
+seqData <- SeqVarData(gds)
+seqSetFilter(seqData, variant.id=pruned)
+iterator <- SeqVarBlockIterator(seqData, verbose=FALSE)
+
+pcrel <- pcrelate(iterator, pcs=pcs[,1:2], training.set=sampset$unrels, 
+                  sample.include=sample.id)
+names(pcrel)
+```
+
+PC-Relate is an iterative method. Now that we have ancestry-adjusted kinship estimates, we can use them to better adjust for ancestry in the PCs. This time we use the `pcair` function, which combines partitioning the sample set and running PCA in one step. First we need to make a kinship matrix from the PC-Relate results. The KING matrix is still used for ancestry divergence.
+
+```{r pcair_2}
+pcrelMat <- pcrelateToMatrix(pcrel, scaleKin=1, verbose=FALSE)
+
+seqResetFilter(seqData, verbose=FALSE)
+pca <- pcair(seqData,
+             kinobj=pcrelMat, kin.thresh=2^(-9/2),
+             divobj=kingMat, div.thresh=-2^(-9/2),
+             sample.include=sample.id, snp.include=pruned,
+             verbose=FALSE)
+names(pca)
+
+pcs <- pca$vectors
+pc.df <- as.data.frame(pcs)
+names(pc.df) <- paste0("PC", 1:ncol(pcs))
+pc.df$sample.id <- row.names(pcs)
+pc.df <- left_join(pc.df, annot, by="sample.id")
+
+ggplot(pc.df, aes(PC1, PC2, color=Population)) + geom_point() +
+    scale_color_manual(values=pop.cols)
+```
+
+Now we use the revised PCs to compute new kinship estimates. One can run the iteration multiple times and check for conversion, but usually two rounds are sufficient.
+
+```{r pcrelate_2}
+seqSetFilter(seqData, variant.id=pruned)
+iterator <- SeqVarBlockIterator(seqData, verbose=FALSE)
+pcrel <- pcrelate(iterator, pcs=pcs[,1:2], training.set=pca$unrels, 
+                  sample.include=sample.id)
+save(pcrel, file="data/pcrelate_kinship.RData")
+```
+
+We plot the kinship estimates from PC-Relate, and notice that the values for less related pairs are much better behaved.
+
+```{r pcrelate_plot}
+kinship <- pcrel$kinBtwn
+
+ggplot(kinship, aes(k0, kin)) +
+    geom_hline(yintercept=2^(-seq(3,9,2)/2), linetype="dashed", color="grey") +
+    geom_point(alpha=0.5) +
+    ylab("kinship estimate") +
+    theme_bw()
+```
+
+```{r close}
+seqClose(gds)
+```
+
+
+## Comparison with pedigree
+
+We can detect pedigree errors and sample identity problems by comparing the pedigree with empirical kinship estimates. We use a function from the GWASTools package, `pedigreePairwiseRelatedness`, to get expected pairwise relationships based on the pedigree.
+
+```{r pedigree}
+pedfile <- "data/pedigree.RData"
+if (!file.exists(pedfile)) download.file(file.path(repo_path, pedfile), pedfile)
+ped <- TopmedPipeline::getobj(pedfile)
+head(ped)
+pw <- GWASTools::pedigreePairwiseRelatedness(ped)
+names(pw)
+rel <- pw$relativeprs
+head(rel)
+table(rel$relation)
+distinct(rel, relation, kinship) %>%
+    arrange(-kinship)
+
+## assign degrees to expected relationship pairs
+rel <- rel %>%
+    mutate(exp.rel=ifelse(kinship == 0.125, "Deg2", ifelse(kinship == 0.0625, "Deg3", relation)),
+           pair=GWASTools::pasteSorted(Individ1, Individ2)) %>%
+    select(pair, family, relation, exp.rel)
+
+## assign degrees to observed relationship pairs
+cut.dup <- 1/(2^(3/2))
+cut.deg1 <- 1/(2^(5/2))
+cut.deg2 <- 1/(2^(7/2))
+cut.deg3 <- 1/(2^(9/2))
+cut.k0 <- 0.1
+kinship <- kinship %>%
+    mutate(obs.rel=ifelse(kin > cut.dup, "Dup",
+                   ifelse(kin > cut.deg1 & k0 < cut.k0, "PO",
+                   ifelse(kin > cut.deg1, "FS",
+                   ifelse(kin > cut.deg2, "Deg2",
+                   ifelse(kin > cut.deg3, "Deg3", "U"))))))
+table(kinship$obs.rel)
+
+# merge observed and expected relationships
+kin.obs <- kinship %>%
+    select(ID1, ID2, kin, k0, obs.rel) %>%
+    mutate(pair=GWASTools::pasteSorted(ID1, ID2)) %>%
+    left_join(rel, by="pair") %>%
+    select(-pair) %>%
+    mutate(exp.rel=ifelse(is.na(exp.rel), "U", exp.rel)) %>%
+    filter(!(exp.rel == "U" & obs.rel == "U"))
+table(kin.obs$exp.rel, kin.obs$obs.rel)
+
+ggplot(kin.obs, aes(k0, kin, color=obs.rel)) + geom_point()
+```
+
+All the observed relationships were unexpected. These samples are from 1000 Genomes sequencing, and known relatives were excluded from the released data. Here we have detected some cryptic relatives that were not annotated in the pedigree.
+
+
+## Exercise
+
+Complete one round of iteration using all samples from the test dataset and plot the results. Be sure to examine the parallel coordinates plot to determine the appropriate number of PCs to give as an argument to `pcrelate`.

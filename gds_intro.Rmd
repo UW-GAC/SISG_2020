@@ -1,0 +1,157 @@
+# GDS format
+
+GDS is Genomic Data Structure, a storage format that can efficiently store genomic data and provide fast random access to subsets of the data. For more information on GDS for sequence data, read the [SeqArray package vignette](https://github.com/zhengxwen/SeqArray/blob/master/vignettes/SeqArrayTutorial.Rmd).
+
+## Exploring a GDS file
+
+To use the R packages developed at the University of Washington for sequence data, we first need to convert a VCF file to GDS. (If the file is BCF, use [https://samtools.github.io/bcftools/bcftools.html](bcftools) to convert to VCF.)
+
+```{r vcf2gds}
+library(SeqArray)
+repo_path <- "https://github.com/UW-GAC/SISG_2020/raw/master"
+if (!dir.exists("data")) dir.create("data")
+vcffile <- "data/1KG_phase3_subset_chr1.vcf.gz"
+if (!file.exists(vcffile)) download.file(file.path(repo_path, vcffile), vcffile)
+gdsfile <- "data/1KG_phase3_subset_chr1.gds"
+seqVCF2GDS(vcffile, gdsfile, fmt.import="GT", storage.option="LZMA_RA", verbose=FALSE)
+```
+
+We can interact with the GDS file using the SeqArray package.
+
+```{r seqarray}
+gds <- seqOpen(gdsfile)
+gds
+
+# the unique sample identifier comes from the VCF header
+sample.id <- seqGetData(gds, "sample.id")
+length(sample.id)
+head(sample.id)
+
+# a unique integer ID is assigned to each variant
+variant.id <- seqGetData(gds, "variant.id")
+length(variant.id)
+head(variant.id)
+
+# reference allele frequency of each variant
+afreq <- seqAlleleFreq(gds)
+hist(afreq, breaks=50)
+```
+
+We can define a filter on the `gds` object. After using the `seqSetFilter` command, all subsequent reads from the `gds` object are restricted to the selected subset of data, until a new filter is defined or `seqResetFilter` is called.
+
+```{r filter}
+seqSetFilter(gds, variant.id=1:10, sample.id=sample.id[1:5])
+```
+
+Genotype data is stored in a 3-dimensional array, where the first dimension is always 2 for diploid genotypes. The second and third dimensions are samples and variants, respectively. The values of the array denote alleles: `0` is the reference allele and `1` is the alternate allele. For multiallelic variants, other alternate alleles are represented as integers `> 1`.
+
+```{r genotypes}
+geno <- seqGetData(gds, "genotype")
+dim(geno)
+geno[,,1:2]
+```
+
+The [SeqVarTools package](http://bioconductor.org/packages/SeqVarTools) has some additional functions for interacting with SeqArray-format GDS files.
+
+```{r seqvartools}
+library(SeqVarTools)
+
+# return genotypes in matrix format
+getGenotype(gds)
+getGenotypeAlleles(gds)
+refDosage(gds)
+altDosage(gds)
+
+# look at reference and alternate alleles
+refChar(gds)
+altChar(gds)
+
+# data.frame of variant information
+variantInfo(gds)
+
+# reset the filter to all variants and samples
+seqResetFilter(gds)
+
+# how many alleles for each variant?
+n <- seqNumAllele(gds)
+table(n)
+
+# some variants have more than one alternate allele
+multi.allelic <- which(n > 2)
+altChar(gds)[multi.allelic]
+
+# extract a particular alternate allele
+# first alternate
+altChar(gds, n=1)[multi.allelic]
+# second alternate
+altChar(gds, n=2)[multi.allelic]
+
+# how many variants are SNVs vs INDELs?
+table(isSNV(gds, biallelic=TRUE))
+table(isSNV(gds, biallelic=FALSE))
+# 11 SNVs are multi-allelic
+```
+
+We can also return variant information as a `GRanges` object from the GenomicRanges package. This format for representing sequence data is common across many Bioconductor packages. Chromosome is stored in the `seqnames` column. The `ranges` column has variant position, which can be a single base pair or a range.
+
+```{r granges}
+gr <- granges(gds)
+gr
+```
+
+
+
+## Exercises 
+
+1. Set a filter selecting only multi-allelic variants. Inspect their genotypes using the different methods you learned above. Use the `alleleDosage` method to find dosage for the second (and third, etc.) alternate allele.
+
+2. Use the `hwe` function in SeqVarTools to run a Hardy-Weinberg Equilibrium test on each variant. Identify a variant with low p-value and inspect its genotypes. (Note that the HWE test is only valid for biallelic variants, and will return `NA` for multiallelic variants.)
+
+
+# GDS - Solutions
+
+1. Set a filter selecting only multi-allelic variants. Inspect their genotypes using the different methods you learned above. Use the `alleleDosage` method to find dosage for the second (and third, etc.) alternate allele.
+
+```{r exercise_gds}
+seqSetFilter(gds, variant.sel=multi.allelic)
+
+geno <- seqGetData(gds, "genotype")
+dim(geno)
+geno[,1:5,]
+
+geno <- getGenotype(gds)
+dim(geno)
+head(geno)
+
+geno <- getGenotypeAlleles(gds)
+head(geno)
+
+dos <- refDosage(gds)
+head(dos)
+
+dos <- altDosage(gds)
+head(dos)
+
+dos <- alleleDosage(gds, n=2)
+head(dos)
+
+dos <- alleleDosage(gds, n=3)
+head(dos)
+```
+
+2. Use the `hwe` function in SeqVarTools to run a Hardy-Weinberg Equilibrium test on each variant. Identify a variant with low p-value and inspect its genotypes. (Note that the HWE test is only valid for biallelic variants, and will return `NA` for multiallelic variants.)
+
+```{r exercise_hwe}
+seqResetFilter(gds)
+hwe.res <- hwe(gds)
+lowp <- !is.na(hwe.res$p) & hwe.res$p < 1e-4
+head(hwe.res[lowp,])
+
+seqSetFilter(gds, variant.id=75)
+table(getGenotype(gds))
+table(refDosage(gds))
+```
+
+```{r intro_close}
+seqClose(gds)
+```
