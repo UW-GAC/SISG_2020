@@ -23,44 +23,49 @@ To work through the exercises, log into http://bit.ly/datastage-sb with your use
 
 Slides for lectures are linked below in the schedule. A detailed description of the course and instructor biographies can be found at https://si.biostat.washington.edu/suminst/sisg2020/modules/SM2017
 
-FIXME
 Join the Slack channel here:
-https://sisg2019module17.slack.com ([link to sign up](https://join.slack.com/t/sisg2019module17/signup))
+https://uwbiostatisticssisg.slack.com
 
 ## Schedule
 
+NOTE: All times are Pacific Daylight Time
+
 **Wednesday, July 29**
 
-- [Introduction]()
-    - [Setup for interactive exercises]()
-- Sequencing data formats
-    - [Sequencing data formats]()
-    - [Intro to Genomic Data Storage]()
-    - [Exercises](https://uw-gac.github.io/SISG_2020/gds-format.html)
-- [Phenotype harmonization]()
-    - [Exercises](https://uw-gac.github.io/SISG_2020/phenotype-harmonization.html)
+- **[Zoom session 11:30-12:15]()** - Introduction
+- Pre-recorded lecture - [Sequencing data formats]()
+- Pre-recorded lecture - [Intro to Genomic Data Storage]()
+- Exercises - [GDS format in R](https://uw-gac.github.io/SISG_2020/gds-format.html)
+- **[Zoom session 1:00-1:45]()** - Review of GDS
+- Pre-recorded lecture - [Phenotype harmonization]()
+- Exercises - [Harmonization in R](https://uw-gac.github.io/SISG_2020/phenotype-harmonization.html)
 
 **Thursday, July 30**
 
-- Association tests
-    - [Methods and motivation]()
-    - [GENESIS for association tests]()
-    - [Exercises](https://uw-gac.github.io/SISG_2020/association-tests.html)
-    - [Aggregate tests]()
-    - [Exercises](https://uw-gac.github.io/SISG_2020/association-tests.html#sliding-window-tests)
-- Population structure and relatedness
-    - [Population structure inference]()
-    - [Relatedness inference]()
-    - [R packages for PCA and relatedness]()
-    - [Exercises](https://uw-gac.github.io/SISG_2020/computing-a-grm.html)
+- Pre-recorded lecture - [Association tests: Methods and motivation]()
+- Pre-recorded lecture - [GENESIS for association tests]()
+- Exercises - [Association tests in R](https://uw-gac.github.io/SISG_2020/association-tests.html)
+- **[Zoom session 9:00-9:45]()** - Association tests
+- Pre-recorded lecture - [Aggregate tests]()
+- Exercises - [Sliding window tests](https://uw-gac.github.io/SISG_2020/association-tests.html#sliding-window-tests)
+- **[Zoom session 11:00-11:45]()** - Aggregate tests
+- Pre-recorded lecture - [Population structure inference]()
+- Pre-recorded lecture - [Relatedness inference]()
+- Pre-recorded lecture - [R packages for PCA and relatedness]()
+- Exercises - [Population structure and relatedness in R](https://uw-gac.github.io/SISG_2020/computing-a-grm.html)
+- **[Zoom session 1:45-2:30]()** - Population structure and relatedness
 
-**Friday, July 26**
+**Friday, July 31**
 
-- [Mixed model association testing]()
-    - [Exercises](https://uw-gac.github.io/SISG_2020/mixed-models.html)
-- [Variant annotation]()
-    - [Exercises](https://uw-gac.github.io/SISG_2020/variant-annotation.html)
-- [Analysis pipeline on the cloud]()
+- Pre-recorded lecture - [Mixed model association testing]()
+- Exercises - [Mixed models in R](https://uw-gac.github.io/SISG_2020/mixed-models.html)
+- **[Zoom session 9:00-9:45]()** - Mixed models
+- Pre-recorded lecture - [Variant annotation]()
+- Exercises - [Using variant annotation](https://uw-gac.github.io/SISG_2020/variant-annotation.html)
+- **[Zoom session 11:00-11:45]()** - Variant annotation
+- Pre-recorded lecture - [Analysis pipelines on the cloud]()
+- Excercises - [Running a GWAS workflow]()
+- **[Zoom session 1:30-2:30]()** - Working in the cloud
 
 
 Download the workshop data and exercises: https://github.com/UW-GAC/SISG_2020/archive/master.zip
@@ -74,7 +79,7 @@ Download the workshop data and exercises: https://github.com/UW-GAC/SISG_2020/ar
 - [TopmedPipeline](https://github.com/UW-GAC/analysis_pipeline/tree/master/TopmedPipeline)
 - [tidyverse](https://www.tidyverse.org)
 - [GGally](https://cran.r-project.org/web/packages/GGally)
-    
+
 
 ## Resources
 
