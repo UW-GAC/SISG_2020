@@ -18,8 +18,7 @@ knitr::opts_chunk$set(echo=TRUE, message=FALSE)
 This site contains course materials for Course materials for SISG Module 17: Computational Pipeline for WGS Data, July 29-31, 2020.
 Data used is located in the [github repository](https://github.com/UW-GAC/SISG_2020) from which the site is built, as well as in the [TOPMed analysis pipeline](https://github.com/UW-GAC/analysis_pipeline).
 
-FIXME
-To work through the exercises, log into http://bit.ly/datastage-sb with your username and password.
+To work through the exercises, log into https://platform.sb.biodatacatalyst.nhlbi.nih.gov with your username and password.
 
 Slides for lectures are linked below in the schedule. A detailed description of the course and instructor biographies can be found at https://si.biostat.washington.edu/suminst/sisg2020/modules/SM2017
 
@@ -28,15 +27,15 @@ https://uwbiostatisticssisg.slack.com
 
 ## Schedule
 
-NOTE: All times are Pacific Daylight Time
+NOTE: All times are Pacific Daylight Time (GMT-07:00)
 
 **Wednesday, July 29**
 
-- **Zoom session 11:30-12:15** - Introduction
+- **Zoom session 11:30-12:15 PDT** - Introduction
 - Pre-recorded lecture - [Sequencing data formats]()
 - Pre-recorded lecture - [Intro to Genomic Data Storage]()
 - Exercises - [GDS format in R](https://uw-gac.github.io/SISG_2020/gds-format.html)
-- **Zoom session 1:00-1:45** - Review of GDS
+- **Zoom session 13:00-13:45 PDT** - Review of GDS
 - Pre-recorded lecture - [Phenotype harmonization]()
 - Exercises - [Harmonization in R](https://uw-gac.github.io/SISG_2020/phenotype-harmonization.html)
 
@@ -45,27 +44,27 @@ NOTE: All times are Pacific Daylight Time
 - Pre-recorded lecture - [Association tests: Methods and motivation]()
 - Pre-recorded lecture - [GENESIS for association tests]()
 - Exercises - [Association tests in R](https://uw-gac.github.io/SISG_2020/association-tests.html)
-- **Zoom session 9:00-9:45** - Association tests
+- **Zoom session 9:00-9:45 PDT** - Association tests
 - Pre-recorded lecture - [Aggregate tests]()
 - Exercises - [Sliding window tests](https://uw-gac.github.io/SISG_2020/association-tests.html#sliding-window-tests)
-- **Zoom session 11:00-11:45** - Aggregate tests
+- **Zoom session 11:00-11:45 PDT** - Aggregate tests
 - Pre-recorded lecture - [Population structure inference]()
 - Pre-recorded lecture - [Relatedness inference]()
 - Pre-recorded lecture - [R packages for PCA and relatedness]()
 - Exercises - [Population structure and relatedness in R](https://uw-gac.github.io/SISG_2020/computing-a-grm.html)
-- **Zoom session 1:45-2:30** - Population structure and relatedness
+- **Zoom session 13:45-14:30 PDT** - Population structure and relatedness
 
 **Friday, July 31**
 
 - Pre-recorded lecture - [Mixed model association testing]()
 - Exercises - [Mixed models in R](https://uw-gac.github.io/SISG_2020/mixed-models.html)
-- **Zoom session 9:00-9:45** - Mixed models
+- **Zoom session 9:00-9:45 PDT** - Mixed models
 - Pre-recorded lecture - [Variant annotation]()
 - Exercises - [Using variant annotation](https://uw-gac.github.io/SISG_2020/variant-annotation.html)
-- **Zoom session 11:00-11:45** - Variant annotation
+- **Zoom session 11:00-11:45 PDT** - Variant annotation
 - Pre-recorded lecture - [Analysis pipelines on the cloud]()
-- Excercises - [Running a GWAS workflow]()
-- **Zoom session 1:30-2:30** - Working in the cloud
+- Exercises - [Running a GWAS workflow]()
+- **Zoom session 13:30-14:30 PDT** - Working in the cloud
 
 
 Download the workshop data and exercises: https://github.com/UW-GAC/SISG_2020/archive/master.zip
