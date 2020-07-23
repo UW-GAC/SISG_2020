@@ -192,7 +192,6 @@ annot$sample.id <- annot$subject_id
 
 We will first fit a null model that allows us to see if the mean of the height phenotype is different by study after adjusting for other covariates.
 In this case, we will adjust for age and sex, but not for study, because we are interested in seeing differences in mean height by study.
-We will also include the genetic relatedness matrix as a random effect to account for relatedness between the participants.
 
 ```{r, message = FALSE}
 outcome <- "height"
