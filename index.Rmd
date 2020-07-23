@@ -18,9 +18,9 @@ knitr::opts_chunk$set(echo=TRUE, message=FALSE)
 This site contains course materials for Course materials for SISG Module 17: Computational Pipeline for WGS Data, July 29-31, 2020.
 Data used is located in the [github repository](https://github.com/UW-GAC/SISG_2020) from which the site is built, as well as in the [TOPMed analysis pipeline](https://github.com/UW-GAC/analysis_pipeline).
 
-To work through the exercises, log into https://platform.sb.biodatacatalyst.nhlbi.nih.gov with your username and password.
+Slides for lectures are linked below in the schedule. Links to live sessions and pre-recorded lectures can be found at https://si.biostat.washington.edu/suminst/sisg2020/modules/SM2017 (make sure to log in).
 
-Slides for lectures are linked below in the schedule. A detailed description of the course and instructor biographies can be found at https://si.biostat.washington.edu/suminst/sisg2020/modules/SM2017
+To work through the exercises, log into https://platform.sb.biodatacatalyst.nhlbi.nih.gov with your username and password.
 
 Join the Slack channel here:
 https://uwbiostatisticssisg.slack.com
@@ -33,7 +33,7 @@ NOTE: All times are Pacific Daylight Time (GMT-07:00)
 
 - **Zoom session 11:30-12:15 PDT** - Introduction
 - Pre-recorded lecture - [Sequencing data formats](https://si.biostat.washington.edu/sites/default/files/modules/Sequencing_data_formats_1.pdf)
-- Pre-recorded lecture - [Intro to Genomic Data Storage](https://si.biostat.washington.edu/sites/default/files/modules/GDS_intro_1.pdf)
+- Pre-recorded lecture - [Intro to Genomic Data Storage](https://si.biostat.washington.edu/sites/default/files/modules/GDS_intro_2.pdf)
 - Exercises - [GDS format in R](https://uw-gac.github.io/SISG_2020/gds-format.html)
 - **Zoom session 13:00-13:45 PDT** - Review of GDS
 - Pre-recorded lecture - [Phenotype harmonization](https://si.biostat.washington.edu/sites/default/files/modules/pheno_harmonization.pdf)
@@ -42,7 +42,7 @@ NOTE: All times are Pacific Daylight Time (GMT-07:00)
 **Thursday, July 30**
 
 - Pre-recorded lecture - [Association tests: Methods and motivation]()
-- Pre-recorded lecture - [GENESIS for association tests](https://si.biostat.washington.edu/sites/default/files/modules/R_assoc_tests_1.pdf)
+- Pre-recorded lecture - [GENESIS for association tests](https://si.biostat.washington.edu/sites/default/files/modules/R_assoc_tests_2.pdf)
 - Exercises - [Association tests in R](https://uw-gac.github.io/SISG_2020/association-tests.html)
 - **Zoom session 9:00-9:45 PDT** - Association tests
 - Pre-recorded lecture - [Aggregate tests]()
