@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-06-23" />
+<meta name="date" content="2020-07-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -320,7 +320,7 @@ annot &lt;-<span class="st"> </span><span class="kw">AnnotatedDataFrame</span>(p
 </div>
 <div id="fit-a-null-model-without-study" class="section level3">
 <h3><span class="header-section-number">4.3.2</span> Fit a null model without study</h3>
-<p>We will first fit a null model that allows us to see if the mean of the height phenotype is different by study after adjusting for other covariates. In this case, we will adjust for age and sex, but not for study, because we are interested in seeing differences in mean height by study. We will also include the genetic relatedness matrix as a random effect to account for relatedness between the participants.</p>
+<p>We will first fit a null model that allows us to see if the mean of the height phenotype is different by study after adjusting for other covariates. In this case, we will adjust for age and sex, but not for study, because we are interested in seeing differences in mean height by study.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">outcome &lt;-<span class="st"> &quot;height&quot;</span>
 covars &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;sex&quot;</span>, <span class="st">&quot;age&quot;</span>)
 

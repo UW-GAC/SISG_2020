@@ -59,7 +59,7 @@ NOTE: All times are Pacific Daylight Time (GMT-07:00)
 - Pre-recorded lecture - [Mixed model association testing]()
 - Exercises - [Mixed models in R](https://uw-gac.github.io/SISG_2020/mixed-models.html)
 - **Zoom session 9:00-9:45 PDT** - Mixed models
-- Pre-recorded lecture - [Variant annotation](https://si.biostat.washington.edu/sites/default/files/modules/variant_annotation.pdf)
+- Pre-recorded lecture - [Variant annotation](https://si.biostat.washington.edu/sites/default/files/modules/variant_annotation_0.pdf)
 - Exercises - [Using variant annotation](https://uw-gac.github.io/SISG_2020/variant-annotation.html)
 - **Zoom session 11:00-11:45 PDT** - Variant annotation
 - Pre-recorded lecture - [Analysis pipelines on the cloud](https://si.biostat.washington.edu/sites/default/files/modules/Cloud_Computing.pdf)
