@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-07-26" />
+<meta name="date" content="2020-07-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -153,6 +153,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="12.3" data-path="aggregate-tests.html"><a href="aggregate-tests.html#exercise-3"><i class="fa fa-check"></i><b>12.3</b> Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="annotation-solutions.html"><a href="annotation-solutions.html"><i class="fa fa-check"></i><b>13</b> Annotation - Solutions</a></li>
+<li class="chapter" data-level="14" data-path="exercises-running-a-gwas-workflow.html"><a href="exercises-running-a-gwas-workflow.html"><i class="fa fa-check"></i><b>14</b> Exercises: Running a GWAS workflow</a><ul>
+<li class="chapter" data-level="14.1" data-path="exercises-running-a-gwas-workflow.html"><a href="exercises-running-a-gwas-workflow.html#vcf-to-gds"><i class="fa fa-check"></i><b>14.1</b> VCF to GDS</a></li>
+<li class="chapter" data-level="14.2" data-path="exercises-running-a-gwas-workflow.html"><a href="exercises-running-a-gwas-workflow.html#null-model-2"><i class="fa fa-check"></i><b>14.2</b> Null Model</a></li>
+<li class="chapter" data-level="14.3" data-path="exercises-running-a-gwas-workflow.html"><a href="exercises-running-a-gwas-workflow.html#single-variant-test"><i class="fa fa-check"></i><b>14.3</b> Single variant test</a></li>
+<li class="chapter" data-level="14.4" data-path="exercises-running-a-gwas-workflow.html"><a href="exercises-running-a-gwas-workflow.html#analysis-follow-up"><i class="fa fa-check"></i><b>14.4</b> Analysis follow-up</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -172,12 +178,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="header">
 <h1 class="title">SISG Module 17: Computational Pipeline for WGS Data</h1>
-<p class="date"><em>2020-07-26</em></p>
+<p class="date"><em>2020-07-27</em></p>
 </div>
 <div id="introduction" class="section level1">
 <h1><span class="header-section-number">1</span> Introduction</h1>
 <p>This site contains course materials for Course materials for SISG Module 17: Computational Pipeline for WGS Data, July 29-31, 2020. Data used is located in the <a href="https://github.com/UW-GAC/SISG_2020">github repository</a> from which the site is built, as well as in the <a href="https://github.com/UW-GAC/analysis_pipeline">TOPMed analysis pipeline</a>.</p>
-<p>Slides for lectures are linked below in the schedule. Links to live sessions and pre-recorded lectures can be found at <a href="https://si.biostat.washington.edu/suminst/sisg2020/modules/SM2017" class="uri">https://si.biostat.washington.edu/suminst/sisg2020/modules/SM2017</a> (make sure to log in).</p>
+<p>Videos and slides for lectures are linked below in the schedule. Links to live sessions can be found at <a href="https://si.biostat.washington.edu/suminst/sisg2020/modules/SM2017" class="uri">https://si.biostat.washington.edu/suminst/sisg2020/modules/SM2017</a> (make sure to log in).</p>
 <p>To work through the exercises, log into <a href="https://platform.sb.biodatacatalyst.nhlbi.nih.gov" class="uri">https://platform.sb.biodatacatalyst.nhlbi.nih.gov</a> with your username and password.</p>
 <p>Join the Slack channel here: <a href="https://uwbiostatisticssisg.slack.com" class="uri">https://uwbiostatisticssisg.slack.com</a></p>
 <div id="schedule" class="section level2">
@@ -186,38 +192,40 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p><strong>Wednesday, July 29</strong></p>
 <ul>
 <li><strong>Zoom session 11:30-12:15 PDT</strong> - Introduction</li>
-<li>Pre-recorded lecture - <a href="https://si.biostat.washington.edu/sites/default/files/modules/Sequencing_data_formats_1.pdf">Sequencing data formats</a></li>
-<li>Pre-recorded lecture - <a href="https://si.biostat.washington.edu/sites/default/files/modules/GDS_intro_2.pdf">Intro to Genomic Data Storage</a></li>
+<li>Pre-recorded lecture - Sequencing data formats (<a href="https://washington.zoom.us/rec/share/3OZtIZX_7mZLXtLyuB35R7EEJI7GX6a8hiAYrKELyR27RU_39JyIFRL8b5w4UuhF?startTime=1594683337000">video</a>) (<a href="https://si.biostat.washington.edu/sites/default/files/modules/Sequencing_data_formats_1.pdf">slides</a>)</li>
+<li>Pre-recorded lecture - Intro to Genomic Data Storage (<a href="https://washington.zoom.us/rec/share/ptwyaIrp83xJaZ3Cw3vEaq0sGNjEaaa8hiNN-PUNmU_BnBgez69k4oCz449iOgL4?startTime=1594840618000">video</a>) (<a href="https://si.biostat.washington.edu/sites/default/files/modules/GDS_intro_2.pdf">slides</a>)</li>
+<li>Pre-recorded lecture - Using BioData Catalyst for SISG exercises (<a href="https://washington.zoom.us/rec/share/z_BtN6jw5mVLQqfozUjyVKMtLLjvX6a8g3Qb8_YMnxnMNLbhANUyCVqRIROOytne?startTime=1595869554000">video</a>)</li>
 <li>Exercises - <a href="https://uw-gac.github.io/SISG_2020/gds-format.html">GDS format in R</a></li>
 <li><strong>Zoom session 13:00-13:45 PDT</strong> - Review of GDS</li>
-<li>Pre-recorded lecture - <a href="https://si.biostat.washington.edu/sites/default/files/modules/pheno_harmonization.pdf">Phenotype harmonization</a></li>
+<li>Pre-recorded lecture - Phenotype harmonization (<a href="https://washington.zoom.us/rec/share/5JV7ILH-1jNIE4Hc2gL1Yq48Br_vaaa8hnIb8_ELyUdlGBoRiHsdmGIpd5zz6kZn?startTime=1595370005000">video</a>) (<a href="https://si.biostat.washington.edu/sites/default/files/modules/pheno_harmonization.pdf">slides</a>)</li>
 <li>Exercises - <a href="https://uw-gac.github.io/SISG_2020/phenotype-harmonization.html">Harmonization in R</a></li>
 </ul>
 <p><strong>Thursday, July 30</strong></p>
 <ul>
-<li>Pre-recorded lecture - <a href="">Association tests: Methods and motivation</a></li>
-<li>Pre-recorded lecture - <a href="https://si.biostat.washington.edu/sites/default/files/modules/R_assoc_tests_2.pdf">GENESIS for association tests</a></li>
+<li>Pre-recorded lecture - Association tests: Methods and motivation</li>
+<li>Pre-recorded lecture - GENESIS for association tests (<a href="https://washington.zoom.us/rec/share/3elQCuvU5jtOZ7fvyFnRaLYsJdu5X6a8g3dK8_YKnh4NQI_41ZS6bU1xORhZMPGO?startTime=1595363212000">video</a>) (<a href="https://si.biostat.washington.edu/sites/default/files/modules/R_assoc_tests_2.pdf">slides</a>)</li>
 <li>Exercises - <a href="https://uw-gac.github.io/SISG_2020/association-tests.html">Association tests in R</a></li>
 <li><strong>Zoom session 9:00-9:45 PDT</strong> - Association tests</li>
-<li>Pre-recorded lecture - <a href="">Aggregate tests</a></li>
+<li>Pre-recorded lecture - Aggregate tests</li>
 <li>Exercises - <a href="https://uw-gac.github.io/SISG_2020/association-tests.html#sliding-window-tests">Sliding window tests</a></li>
 <li><strong>Zoom session 11:00-11:45 PDT</strong> - Aggregate tests</li>
-<li>Pre-recorded lecture - <a href="">Population structure inference</a></li>
-<li>Pre-recorded lecture - <a href="">Relatedness inference</a></li>
-<li>Pre-recorded lecture - <a href="https://si.biostat.washington.edu/sites/default/files/modules/R_kinship_pca_1.pdf">R packages for PCA and relatedness</a></li>
+<li>Pre-recorded lecture - Population structure inference</li>
+<li>Pre-recorded lecture - Relatedness inference</li>
+<li>Pre-recorded lecture - R packages for PCA and relatedness (<a href="https://washington.zoom.us/rec/share/uup8C5Ts50VOWpWdxHDDWvUzE7nieaa8gHVP_qFcxUt1umphrSYNDW9yDt3q5M-n?startTime=1595442394000">video</a>) (<a href="https://si.biostat.washington.edu/sites/default/files/modules/R_kinship_pca_1.pdf">slides</a>)</li>
 <li>Exercises - <a href="https://uw-gac.github.io/SISG_2020/computing-a-grm.html">Population structure and relatedness in R</a></li>
 <li><strong>Zoom session 13:45-14:30 PDT</strong> - Population structure and relatedness</li>
 </ul>
 <p><strong>Friday, July 31</strong></p>
 <ul>
-<li>Pre-recorded lecture - <a href="">Mixed model association testing</a></li>
+<li>Pre-recorded lecture - Mixed model association testing</li>
 <li>Exercises - <a href="https://uw-gac.github.io/SISG_2020/mixed-models.html">Mixed models in R</a></li>
 <li><strong>Zoom session 9:00-9:45 PDT</strong> - Mixed models</li>
-<li>Pre-recorded lecture - <a href="https://si.biostat.washington.edu/sites/default/files/modules/variant_annotation_0.pdf">Variant annotation</a></li>
+<li>Pre-recorded lecture - Variant annotation (<a href="https://washington.zoom.us/rec/share/5cpzcuntpklJW8_K7mKPZ7U4RY7-T6a81CZLqfcLmEZ4UtOvefz1dn05i3eFNAjJ?startTime=1595707556000">video</a>) (<a href="https://si.biostat.washington.edu/sites/default/files/modules/variant_annotation_0.pdf">slides</a>)</li>
 <li>Exercises - <a href="https://uw-gac.github.io/SISG_2020/variant-annotation.html">Using variant annotation</a></li>
 <li><strong>Zoom session 11:00-11:45 PDT</strong> - Variant annotation</li>
-<li>Pre-recorded lecture - <a href="https://si.biostat.washington.edu/sites/default/files/modules/Cloud_Computing.pdf">Analysis pipelines on the cloud</a></li>
-<li>Exercises - <a href="">Running a GWAS workflow</a></li>
+<li>Pre-recorded lecture - Analysis pipelines on the cloud (<a href="https://washington.zoom.us/rec/share/4_1bI-3Q3UVLXJH07BmGSvUgTrz1eaa8hiceqPoPzUzd-fBH94rKeazO2iV8z6i6?startTime=1595875794000">video</a>) (<a href="https://si.biostat.washington.edu/sites/default/files/modules/Cloud_Computing.pdf">slides</a>)</li>
+<li>Pre-recorded lecture - Running a workflow on BioData Catalyst (<a href="https://washington.zoom.us/rec/share/wtxcFZPgzF5LTZXHxVPiQ5weMtreX6a81SNMrPIEn0sVFKctNRBSuHnZR4Lx78Bg?startTime=1595882071000">video</a>)</li>
+<li>Exercises - <a href="https://uw-gac.github.io/SISG_2020/workflow.html">Running a GWAS workflow</a></li>
 <li><strong>Zoom session 13:30-14:30 PDT</strong> - Working in the cloud</li>
 </ul>
 <p>Download the workshop data and exercises: <a href="https://github.com/UW-GAC/SISG_2020/archive/master.zip" class="uri">https://github.com/UW-GAC/SISG_2020/archive/master.zip</a></p>
