@@ -31,56 +31,53 @@ NOTE: All times are Pacific Daylight Time (GMT-07:00)
 
 **Wednesday, July 29**
 
-- **Zoom session 11:30-12:15 PDT** - Introduction
-- Between 12:15 and 13:00 PDT: watch lectures
+- **Zoom session 11:30-13:15 PDT** - Introduction and Genomic Data Storage
     - Pre-recorded lecture - Using BioData Catalyst for SISG exercises ([video](https://washington.zoom.us/rec/share/z_BtN6jw5mVLQqfozUjyVKMtLLjvX6a8g3Qb8_YMnxnMNLbhANUyCVqRIROOytne?startTime=1595869554000))
     - Pre-recorded lecture - Sequencing data formats ([video](https://washington.zoom.us/rec/share/3OZtIZX_7mZLXtLyuB35R7EEJI7GX6a8hiAYrKELyR27RU_39JyIFRL8b5w4UuhF?startTime=1594683337000)) ([slides](https://si.biostat.washington.edu/sites/default/files/modules/Sequencing_data_formats_1.pdf))
     - Pre-recorded lecture - Intro to Genomic Data Storage ([video](https://washington.zoom.us/rec/share/ptwyaIrp83xJaZ3Cw3vEaq0sGNjEaaa8hiNN-PUNmU_BnBgez69k4oCz449iOgL4?startTime=1594840618000)) ([slides](https://si.biostat.washington.edu/sites/default/files/modules/GDS_intro_2.pdf))
-- **Zoom session 13:00-13:45 PDT** - GDS exercises
-    - Exercises - [GDS format in R](https://uw-gac.github.io/SISG_2020/gds-format.html)
-    - Discussion questions
-- After 13:45 PDT: watch lecture, try exercises
+    - Exercises in breakout rooms - [GDS format in R](https://uw-gac.github.io/SISG_2020/gds-format.html)
+    - Discussion (Zoom recording to follow)
+- **Zoom session 13:45-14:30 PDT** - Phenotype harmonization
     - Pre-recorded lecture - Phenotype harmonization ([video](https://washington.zoom.us/rec/share/5JV7ILH-1jNIE4Hc2gL1Yq48Br_vaaa8hnIb8_ELyUdlGBoRiHsdmGIpd5zz6kZn?startTime=1595370005000)) ([slides](https://si.biostat.washington.edu/sites/default/files/modules/pheno_harmonization.pdf))
-    - Exercises - [Harmonization in R](https://uw-gac.github.io/SISG_2020/phenotype-harmonization.html)
+    - Exercises in breakout rooms - [Harmonization in R](https://uw-gac.github.io/SISG_2020/phenotype-harmonization.html)
+    - Discussion (Zoom recording to follow)
 
 **Thursday, July 30**
 
-- Before 9:00 PDT: watch lectures, work on exercises
+- **Zoom session 8:00-9:45 PDT** - Association tests, Part I
     - Pre-recorded lecture - Association tests: Methods and motivation
     - Pre-recorded lecture - GENESIS for association tests ([video](https://washington.zoom.us/rec/share/3elQCuvU5jtOZ7fvyFnRaLYsJdu5X6a8g3dK8_YKnh4NQI_41ZS6bU1xORhZMPGO?startTime=1595363212000)) ([slides](https://si.biostat.washington.edu/sites/default/files/modules/R_assoc_tests_2.pdf))
-    - Exercises - [Association tests in R](https://uw-gac.github.io/SISG_2020/association-tests.html)
-- **Zoom session 9:00-9:45 PDT** - Association tests
-- Between 9:45 and 11:00 PDT: watch lecture, try exercises, take a break
+    - Exercises in breakout rooms - [Association tests in R](https://uw-gac.github.io/SISG_2020/association-tests.html)
+    - Discussion (Zoom recording to follow)
+- **Zoom session 10:15-11:45 PDT** - Association tests, Part II
     - Pre-recorded lecture - Aggregate tests
-    - Exercises - [Sliding window tests](https://uw-gac.github.io/SISG_2020/association-tests.html#sliding-window-tests)
-- **Zoom session 11:00-11:45 PDT** - Aggregate tests
-    - Discussion questions
-- Between 11:45 and 1:45 PDT: watch lectures, try exercises, take a break
+    - Exercises in breakout rooms - [Sliding window tests](https://uw-gac.github.io/SISG_2020/association-tests.html#sliding-window-tests)
+    - Discussion (Zoom recording to follow)
+- **Zoom session 12:45-14:30 PDT** - Population Structure and Relatedness
     - Pre-recorded lecture - Population structure inference
     - Pre-recorded lecture - Relatedness inference
     - Pre-recorded lecture - R packages for PCA and relatedness ([video](https://washington.zoom.us/rec/share/uup8C5Ts50VOWpWdxHDDWvUzE7nieaa8gHVP_qFcxUt1umphrSYNDW9yDt3q5M-n?startTime=1595442394000)) ([slides](https://si.biostat.washington.edu/sites/default/files/modules/R_kinship_pca_1.pdf))
-    - Exercises - [Population structure and relatedness in R](https://uw-gac.github.io/SISG_2020/computing-a-grm.html)
-- **Zoom session 13:45-14:30 PDT** - Population structure and relatedness
-    - Discussion questions
+    - Exercises in breakout rooms - [Population structure and relatedness in R](https://uw-gac.github.io/SISG_2020/computing-a-grm.html)
+    - Discussion (Zoom recording to follow)
 
 **Friday, July 31**
 
-- Before 9:00 PDT: watch lectures, work on exercises
+- **Zoom session 8:00-9:30 PDT** - Mixed models
     - Pre-recorded lecture - Mixed model association testing
-    - Exercises - [Mixed models in R](https://uw-gac.github.io/SISG_2020/mixed-models.html)
-- **Zoom session 9:00-9:45 PDT** - Mixed models
-    - Discussion questions
-- Between 9:45 and 11:00 PDT: watch lecture, try exercises, take a break
+    - Exercises in breakout rooms - [Mixed models in R](https://uw-gac.github.io/SISG_2020/mixed-models.html)
+    - Discussion (Zoom recording to follow)
+- **Zoom session 9:45-11:30 PDT** - Variant annotation
     - Pre-recorded lecture - Variant annotation ([video](https://washington.zoom.us/rec/share/5cpzcuntpklJW8_K7mKPZ7U4RY7-T6a81CZLqfcLmEZ4UtOvefz1dn05i3eFNAjJ?startTime=1595707556000)) ([slides](https://si.biostat.washington.edu/sites/default/files/modules/variant_annotation_0.pdf))
-    - Exercises - [Using variant annotation](https://uw-gac.github.io/SISG_2020/variant-annotation.html)
-- **Zoom session 11:00-11:45 PDT** - Variant annotation
-    - Discussion questions
-- Between 11:45 and 13:30 PDT: watch lectures, try exercises, take a break
+    - Exercises in breakout rooms - [Using variant annotation](https://uw-gac.github.io/SISG_2020/variant-annotation.html)
+    - Discussion (Zoom recording to follow)
+- **Zoom session 12:30-13:45 PDT** - Working in the cloud
     - Pre-recorded lecture - Analysis pipelines on the cloud ([video](https://washington.zoom.us/rec/share/4_1bI-3Q3UVLXJH07BmGSvUgTrz1eaa8hiceqPoPzUzd-fBH94rKeazO2iV8z6i6?startTime=1595875794000)) ([slides](https://si.biostat.washington.edu/sites/default/files/modules/Cloud_Computing.pdf))
     - Pre-recorded lecture - Running a workflow on BioData Catalyst ([video](https://washington.zoom.us/rec/share/wtxcFZPgzF5LTZXHxVPiQ5weMtreX6a81SNMrPIEn0sVFKctNRBSuHnZR4Lx78Bg?startTime=1595882071000))
-    - Exercises - [Running a GWAS workflow](https://uw-gac.github.io/SISG_2020/workflow.html)
-- **Zoom session 13:30-14:30 PDT** - Working in the cloud
-    - Discussion questions
+    - Exercises in breakout rooms - [Running a GWAS workflow](https://uw-gac.github.io/SISG_2020/workflow.html)
+    - Discussion (Zoom recording to follow)
+- **Zoom session 14:00-14:30 PDT** - Open session for questions/advice
+    - No lectures/exercises for this session
+
 
 
 Download the workshop data and exercises: https://github.com/UW-GAC/SISG_2020/archive/master.zip
