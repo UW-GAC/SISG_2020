@@ -32,16 +32,16 @@ NOTE: All times are Pacific Daylight Time (GMT-07:00)
 **Wednesday, July 29**
 
 - **Zoom session 11:30-13:15 PDT** - Introduction and Genomic Data Storage
-    - Introduction ([slides](https://docs.google.com/presentation/d/17DFvIH97RhcY6gq-BRYsxL-0r2jgl_p1-EMsgGXIYoE/edit?usp=sharing))
+    - Introduction ([video](https://washington.zoom.us/rec/share/2pB5Dej36mBJfKPk1Rz1AZ8nQ7rOX6a82yAf__EKxBwR9YbEVa5w9EQU0It8PXFv?startTime=1596047526000)) ([slides](https://docs.google.com/presentation/d/17DFvIH97RhcY6gq-BRYsxL-0r2jgl_p1-EMsgGXIYoE/edit?usp=sharing))
     - Pre-recorded lecture - Using BioData Catalyst for SISG exercises ([video - 11 min](https://washington.zoom.us/rec/share/z_BtN6jw5mVLQqfozUjyVKMtLLjvX6a8g3Qb8_YMnxnMNLbhANUyCVqRIROOytne?startTime=1595869554000))
     - Pre-recorded lecture - Sequencing data formats ([video - 15 min](https://washington.zoom.us/rec/share/3OZtIZX_7mZLXtLyuB35R7EEJI7GX6a8hiAYrKELyR27RU_39JyIFRL8b5w4UuhF?startTime=1594683337000)) ([slides](https://si.biostat.washington.edu/sites/default/files/modules/Sequencing_data_formats_1.pdf))
     - Pre-recorded lecture - Intro to Genomic Data Storage ([video - 17 min](https://washington.zoom.us/rec/share/ptwyaIrp83xJaZ3Cw3vEaq0sGNjEaaa8hiNN-PUNmU_BnBgez69k4oCz449iOgL4?startTime=1594840618000)) ([slides](https://si.biostat.washington.edu/sites/default/files/modules/GDS_intro_2.pdf))
     - Exercises in breakout rooms - [GDS format in R](https://uw-gac.github.io/SISG_2020/gds-format.html)
-    - Discussion (Zoom recording to follow)
+    - Discussion ([video](https://washington.zoom.us/rec/share/2pB5Dej36mBJfKPk1Rz1AZ8nQ7rOX6a82yAf__EKxBwR9YbEVa5w9EQU0It8PXFv?startTime=1596053230000))
 - **Zoom session 13:45-14:30 PDT** - Phenotype harmonization
     - Pre-recorded lecture - Phenotype harmonization ([video - 19 min](https://washington.zoom.us/rec/share/5JV7ILH-1jNIE4Hc2gL1Yq48Br_vaaa8hnIb8_ELyUdlGBoRiHsdmGIpd5zz6kZn?startTime=1595370005000)) ([slides](https://si.biostat.washington.edu/sites/default/files/modules/pheno_harmonization.pdf))
     - Exercises in breakout rooms - [Harmonization in R](https://uw-gac.github.io/SISG_2020/phenotype-harmonization.html)
-    - Discussion (Zoom recording to follow)
+    - Discussion ([video](https://washington.zoom.us/rec/share/2pB5Dej36mBJfKPk1Rz1AZ8nQ7rOX6a82yAf__EKxBwR9YbEVa5w9EQU0It8PXFv?startTime=1596057633000))
 
 **Thursday, July 30**
 
@@ -55,8 +55,8 @@ NOTE: All times are Pacific Daylight Time (GMT-07:00)
     - Exercises in breakout rooms - [Sliding window tests](https://uw-gac.github.io/SISG_2020/association-tests.html#sliding-window-tests)
     - Discussion (Zoom recording to follow)
 - **Zoom session 12:45-14:30 PDT** - Population Structure and Relatedness
-    - Pre-recorded lecture - Population structure inference
-    - Pre-recorded lecture - Relatedness inference
+    - Pre-recorded lecture - Population structure inference ([video - 33 min](https://drive.google.com/file/d/1hLtTP1b6aUDBbz9mQ2i9J9Yg3Zbfsvvm/view?usp=sharing)) ([slides](https://si.biostat.washington.edu/sites/default/files/modules/Population_Structure_Inference_2020.pdf))
+    - Pre-recorded lecture - Relatedness inference ([video - 25 min](https://drive.google.com/file/d/1JMlVvEGU4x9u2UBIJiw7RRIFUrbNdj3f/view?usp=sharing)) ([slides](https://si.biostat.washington.edu/sites/default/files/modules/Relatedness_Inference_2020.pdf))
     - Pre-recorded lecture - R packages for PCA and relatedness ([video - 9 min](https://washington.zoom.us/rec/share/uup8C5Ts50VOWpWdxHDDWvUzE7nieaa8gHVP_qFcxUt1umphrSYNDW9yDt3q5M-n?startTime=1595442394000)) ([slides](https://si.biostat.washington.edu/sites/default/files/modules/R_kinship_pca_1.pdf))
     - Exercises in breakout rooms - [Population structure and relatedness in R](https://uw-gac.github.io/SISG_2020/computing-a-grm.html)
     - Discussion (Zoom recording to follow)
@@ -64,7 +64,7 @@ NOTE: All times are Pacific Daylight Time (GMT-07:00)
 **Friday, July 31**
 
 - **Zoom session 8:00-9:30 PDT** - Mixed models
-    - Pre-recorded lecture - Mixed model association testing
+    - Pre-recorded lecture - Mixed model association testing ([slides](https://si.biostat.washington.edu/sites/default/files/modules/Mixed_Model_Association_Testing_2020.pdf))
     - Exercises in breakout rooms - [Mixed models in R](https://uw-gac.github.io/SISG_2020/mixed-models.html)
     - Discussion (Zoom recording to follow)
 - **Zoom session 9:45-11:30 PDT** - Variant annotation
