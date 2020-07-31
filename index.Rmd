@@ -70,11 +70,11 @@ NOTE: All times are Pacific Daylight Time (GMT-07:00)
 - **Zoom session 9:45-11:30 PDT** - Variant annotation
     - Pre-recorded lecture - Variant annotation ([video - 21 min](https://washington.zoom.us/rec/share/5cpzcuntpklJW8_K7mKPZ7U4RY7-T6a81CZLqfcLmEZ4UtOvefz1dn05i3eFNAjJ?startTime=1595707556000)) ([slides](https://si.biostat.washington.edu/sites/default/files/modules/variant_annotation_0.pdf))
     - Exercises in breakout rooms - [Using variant annotation](https://uw-gac.github.io/SISG_2020/variant-annotation.html)
-    - Discussion (Zoom recording to follow)
+    - Discussion (Zoom recording to follow) - includes 30 min of open questions and discussion
 - **Zoom session 12:30-13:45 PDT** - Working in the cloud
     - Pre-recorded lecture - Analysis pipelines on the cloud  ([video - 24 min](https://washington.zoom.us/rec/share/4_1bI-3Q3UVLXJH07BmGSvUgTrz1eaa8hiceqPoPzUzd-fBH94rKeazO2iV8z6i6?startTime=1595875794000)) ([slides](https://si.biostat.washington.edu/sites/default/files/modules/Cloud_Computing.pdf))
     - Pre-recorded lecture - Running a workflow on BioData Catalyst ([video - 16 min](https://washington.zoom.us/rec/share/wtxcFZPgzF5LTZXHxVPiQ5weMtreX6a81SNMrPIEn0sVFKctNRBSuHnZR4Lx78Bg?startTime=1595882071000))
-    - Exercises in breakout rooms - [Running a GWAS workflow](https://uw-gac.github.io/SISG_2020/workflow.html)
+    - Exercises in breakout rooms - [Running a GWAS workflow](https://uw-gac.github.io/SISG_2020/exercises-running-a-gwas-workflow.html)
     - Discussion (Zoom recording to follow)
 - **Zoom session 14:00-14:30 PDT** - Open session for questions/advice
     - No lectures/exercises for this session
